@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Adicione uma Tarefa{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1> Adicione aqui a sua nova Tarefa: </h1>
+
+    <form method="POST">
+        <!-- Sempre que criar um form deve ter o csrf
+                Usado para pegar o post  -->
+        {% csrf_token %}
+        <!-- Applica os field do Bootstrap4 -(template do Bootstrap4)-->
+        {{form|crispy}}
+        <!-- Trocado pelo codigo acima {{form.as_p}} -(template do Django) -->
+        <input type="submit" class="btn btn-success" value="Criar Tarefa">
+    </form>
+
+</div>
+{% endblock %}

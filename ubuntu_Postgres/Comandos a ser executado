@@ -1,0 +1,29 @@
+Comandos a ser executado
+
+#sobe o docker
+docker-compose up   
+
+#executa o script.sql
+docker exec -i test_postgres psql -Upostgres < /home/smigou/projsDocker/ubuntu_Postgres/script.sql
+
+#entra no terminal do ubuntu
+docker exec -it test_postgres /bin/bash
+
+#entra no banco de dados
+su postgres -c psql postgres
+select * from nomes;            \d -ver tabelas 
+----------------------------------------------------------------------------------
+#Volume
+
+Pode ser vizualizado no compose.
+
+----------------------------------------------------------------------------------
+#buildar imagem ubuntu(Dockerfile)
+
+# -t = nomedaimage , -f = forçaParada se estiver em execuçao , ./Dockerfile = file que cria a imagem , ./imagen_ubu = local onde gerara a imagem
+docker build -t uteste -f ./Dockerfile ./imagen_ubu/ 
+docker run --rm --name tesub uteste
+----------------------------------------------------------------------------------
+
+
+

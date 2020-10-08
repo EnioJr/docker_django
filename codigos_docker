@@ -1,0 +1,29 @@
+- Codigo para criar aplicaçao do projeto
+docker-compose run web django-admin startproject composeexample
+
+- Codigo pra criar usuario
+docker-compose run web python manage.py createsuperuser
+
+- Codigo pra criar uma aplicaçao
+docker-compose run web python manage.py startapp nomes
+
+- dar permissao de usuario para todas as pastas
+sudo chown -R $USER:$USER .
+
+- Se for fazer alteraçoes no banco de dados deve utilizar os comandos abaixo.
+
+docker-compose run web python manage.py makemigrations
+docker-compose run web python manage.py migrate
+
+- Se tiver que adicionar algum pacote no pip (Nao funciona direito)
+docker-compose run web pip install <namepacote>
+
+- Se quizer buildar parte do projeto
+docker-compose build web
+
+###################################################################################
+- Aplicaçao sem o Docker
+python manage.py runserver
+
+
+# request > url > view > models > response

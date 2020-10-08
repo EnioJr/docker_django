@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: test_postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres2020"
+    ports:
+      - "15432:5432"
+    volumes:
+      - my_volume:/var/lib/postgresql/data
+      # - ./PostgreSQL:/var/lib/postgresql/data 
+    networks:
+      - postgres-compose-network
+    restart: always
+
+  ubuntu-sla:
+    image: ubuntu
+    container_name: test_terminal
+    volumes:
+      - my_volume:/var/lib/postgresql/data               
+    depends_on:                                 # vai inicializar depois que o postgres subir
+      - postgres    
+    # usado para fazer a iteratividade do container e nao deixar o ubuntu cair 
+    # e como se fosse o run -it
+    stdin_open: true
+    tty: true
+    entrypoint: 
+      - '/bin/bash'  
+      
+volumes: 
+  my_volume:
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
